@@ -1,0 +1,165 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.box {
+  background: rgb(173, 93, 41);
+  margin: 80px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+}
+
+.btn {
+  background: brown;
+  border: 1px solid brown;
+  padding: 10px;
+  float: right;
+  border-top-right-radius: 15px;
+}
+
+.btn .back-btn {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.btn .back-btn:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+  width: 800px;
+  margin: auto;
+  border: 5px solid brown;
+}
+
+.score {
+  text-align: center;
+}
+
+.message {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.header-left {
+  margin-right: 90px;
+}
+
+.header-right {
+  margin-left: 90px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgb(173, 93, 41);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h1 {
+  text-align: center;
+  color: rgb(237, 161, 69);
+  font-weight: bold;
+}
+
+.modal-content p {
+  color: rgb(237, 161, 69);
+  text-align: center;
+}
+
+.next {
+  background-color:green;
+  color: #cccccc;
+  margin: 20px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.next:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.quitGame {
+  background-color:#8B0000;
+  color: #cccccc;
+  margin: 20px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+.quitGame:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}

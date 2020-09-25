@@ -1,20 +1,252 @@
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    height: 600px;
-    width: 800px;
-    margin: auto;
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: url("./images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-decoration: none;
+  list-style-type: none;
 }
 
-.title{
-    font-family: sans-serif;
-    text-align: center;
+.wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.score{
-    text-align: center;
+#title {
+  display: flex;
+  margin: 0 auto;
 }
 
-.message{
-    text-align: center;
+.instruction {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
+
+.box {
+  background-color: rgb(173, 93, 41);
+  width: 800px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+}
+
+.box h1 {
+  text-align: center;
+  color: rgb(237, 161, 69);
+  font-weight: bold;
+}
+
+#description {
+  color: rgb(237, 161, 69);
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.play {
+  background-color:green;
+  color: #cccccc;
+  margin: 20px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+.play:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.get-instruction {
+  background-color:darkblue;
+  color: #cccccc;
+  margin: 20px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+.get-instruction:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+.credit a {
+  color: rgb(173, 93, 41);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgb(173, 93, 41);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h1 {
+  text-align: center;
+  color: rgb(237, 161, 69);
+  font-weight: bold;
+}
+
+.modal-content p {
+  color: rgb(237, 161, 69);
+  text-align: center;
+}
+
+.modal-content form input[type=text] {
+  border: 2px solid rgb(110, 61, 28);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6)
+}
+
+::placeholder {
+  color: rgb(110, 61, 28);
+  text-align: center;
+}
+
+input {
+  text-align: center;
+}
+
+input:focus {
+  color: rgb(110, 61, 28);
+}
+
+div.form {
+  display: block;
+  text-align: center;
+}
+
+.play-modal {
+  padding-top: 10px;
+  display: block;
+  text-align: center;
+}
+
+.opt-list {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.opt-box {
+  background-color: rgb(110, 61, 28);
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px 40px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.box .center h2 {
+  color: rgb(237, 161, 69);
+}
+
+.opt-box h3 {
+  font-size: 16px;
+  line-height: 8px;
+  color: rgb(237, 161, 69);
+}
+
+.opt-box:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.center h2 {
+  text-align: center;
+}
+
+.reset {
+  background-color:#8B0000;
+  color: #cccccc;
+  margin: 20px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+}
+
+.reset:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.active {
+  background-color: rgb(110, 61, 28);
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 5px 40px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  opacity: 50%;
+}
+
