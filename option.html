@@ -13,60 +13,55 @@
   <embed name="Music" src="./audio/kampuang.mp3" loop="true" hidden="true" autostart="true">
   <img src="./images/wonderful_indonesia.png" alt="title" id="title">
   <div class="wrapper">
-    <div class="instruction">
+    <div class="instruction2">
       <div class="box">
-        <div class="center">
-          <h2>Hello <span id="myName">user</span> choose 6 out of 10 Bali Baru to be showed on the game</h2>
+        <h2 class="greeting">Hello, <span id="myName">user</span>! </h2>
+        <p class="text"> Choose 6 out of 10 Bali Baru to be showed on the game</p>
+        <div class="outer-box">
+          <div class="opt-list">
+            <div class="opt-box" id="opt-1">
+              <h3>Toba Lake</h3>
+            </div>
+            <div class="opt-box" id="opt-7">
+              <h3>Tanjung Kelayang</h3>
+            </div>
+            <div class="opt-box" id="opt-8">
+              <h3>Tanjung Lesung</h3>
+            </div>
+          </div>
+          <div class="opt-list">
+            <div class="opt-box" id="opt-9">
+              <h3>Kepulauan Seribu</h3>
+            </div>
+            <div class="opt-box" id="opt-0">
+              <h3>Borobudur Temple</h3>
+            </div>
+            <div class="opt-box" id="opt-2">
+              <h3>Mount Bromo</h3>
+            </div>
+          </div>
+          <div class="opt-list">
+            <div class="opt-box" id="opt-6">
+              <h3>Mandalika</h3>
+            </div>
+            <div class="opt-box" id="opt-3">
+              <h3>Labuan Bajo</h3>
+            </div>
+          </div>
+          <div class="opt-list">
+            <div class="opt-box" id="opt-5">
+              <h3>Wakatobi</h3>
+            </div>
+            <div class="opt-box" id="opt-4">
+              <h3>Morotai Island</h3>
+            </div>
+          </div>
         </div>
-        <div class="opt-list">
-          <div class="opt-box" id="opt-1">
-            <h3>Toba Lake</h3>
-          </div>
-          <div class="opt-box" id="opt-7">
-            <h3>Tanjung Kelayang</h3>
-          </div>
-        </div>
-        <div class="opt-list">
-          <div class="opt-box" id="opt-8">
-            <h3>Tanjung Lesung</h3>
-          </div>
-          <div class="opt-box" id="opt-9">
-            <h3>Kepulauan Seribu</h3>
-          </div>
-        </div>
-        <div class="opt-list">
-          <div class="opt-box" id="opt-0">
-            <h3>Borobudur Temple</h3>
-          </div>
-          <div class="opt-box" id="opt-2">
-            <h3>Mount Bromo</h3>
-          </div>
-        </div>
-        <div class="opt-list">
-          <div class="opt-box" id="opt-6">
-            <h3>Mandalika</h3>
-          </div>
-          <div class="opt-box" id="opt-3">
-            <h3>Labuan Bajo</h3>
-          </div>
-        </div>
-        <div class="opt-list" id="opt-5">
-          <div class="opt-box">
-            <h3>Wakatobi</h3>
-          </div>
-          <div class="opt-box" id="opt-4">
-            <h3>Morotai Island</h3>
-          </div>
-        </div>
-        <div class="center">
-          <div class="reset" id="reset">Reset Choice</div>
-          <div class="play" id="play-play">Play</div>
+        <div class="options">
+          <div class="reset" id="reset">RESET CHOICE</div>
+          <div class="play" id="play-play">PLAY</div>
         </div>
       </div>
-    </div>
-    <div class="credit">
-      <a href='https://www.cnnindonesia.com/gaya-hidup/20181014151703-269-338377/indonesia-pamer-10-bali-baru-di-pertemuan-imf-bank-dunia'
-        style="color: whitesmoke;">*Learn more about 10 Bali Baru</a>
     </div>
   </div>
 
@@ -75,17 +70,23 @@
     var myNameIs = document.getElementById("myName");
     var getUsername = localStorage.getItem("usernameInput");
     if (getUsername) {
-      myNameIs.innerText = `'${getUsername}'`;
+      myNameIs.innerText = getUsername;
     }
 
     var activeList = []
     var options = document.getElementsByClassName("opt-box")
     for (var i = 0; i < options.length; i++) {
       options[i].addEventListener("click", function (e) {
-        this.classList.add("active");
         var optId = this.getAttribute("id");
-        activeList.push(optId);
-        localStorage.setItem("activeList", JSON.stringify(activeList));
+        var index = activeList.indexOf(optId);
+        if (index === -1) {
+          this.classList.add("active");
+          activeList.push(optId);
+          localStorage.setItem("activeList", JSON.stringify(activeList));
+        } else {
+          this.classList.remove("active");
+          activeList.splice(index, 1);
+        }
       })
     }
 

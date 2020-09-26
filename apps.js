@@ -20,8 +20,13 @@ window.onclick = function (event) {
 // modal play
 var modal2 = document.getElementById("starting-game");
 var btn2 = document.getElementById("play-game");
+var closebtn = document.getElementsByClassName("close")[1];
 btn2.onclick = function () {
   modal2.style.display = "block";
+}
+
+closebtn.onclick = function () {
+  modal2.style.display = "none";
 }
 
 window.onclick = function (event) {

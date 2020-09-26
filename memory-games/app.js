@@ -185,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var cardsChosenImage = [];
   var cardsMessage = [];
   var cardsWon = [];
+  var cardsOpenedId = [];
   var isTicking = true;
   var state = false;
 
@@ -198,6 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
       var card = document.createElement("img");
       card.setAttribute("src", "../images/wonderful-indonesia.png");
       card.setAttribute("data-id", j);
+      card.style.height = "200px";
+      card.style.width = "200px";
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
     }
@@ -230,6 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionOneId].setAttribute("src", imageOpen);
       cards[optionTwoId].setAttribute("src", imageOpen);
       cardsWon.push(cardsChosen);
+      cardsOpenedId.push(optionOneId);
+      cardsOpenedId.push(optionTwoId);
       messageText.textContent = message;
       var mySound = new sound('../audio/match.mp3');
       mySound.play();
@@ -263,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardsChosenImage = [];
         cardsMessage = [];
         cardsWon = [];
+        cardsOpenedId = [];
         state = true;
         createBoard();
         winDialog.style.display = "none";
@@ -273,13 +279,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // flip card
   function flipCard() {
     var cardId = this.getAttribute("data-id");
-    cardsChosen.push(cardArray[cardId].name);
-    cardsChosenId.push(cardId);
-    cardsChosenImage.push(cardArray[cardId].imgOpen);
-    cardsMessage.push(cardArray[cardId].messageOpen);
-    this.setAttribute("src", cardArray[cardId].img);
-    if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 500);
+    var isOpened = cardsOpenedId.indexOf(cardId);
+    console.log(cardsOpenedId);
+    console.log(isOpened);
+    if (isOpened === -1) {
+      cardsChosen.push(cardArray[cardId].name);
+      cardsChosenId.push(cardId);
+      cardsChosenImage.push(cardArray[cardId].imgOpen);
+      cardsMessage.push(cardArray[cardId].messageOpen);
+      this.setAttribute("src", cardArray[cardId].img);
+      if (cardsChosen.length === 2) {
+        setTimeout(checkForMatch, 500);
+      }
+    }
+    else {
+      console.log("masuk kesini");
+      alert("can't choose opened card");
     }
   }
 
@@ -320,6 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cardsChosenImage = [];
             cardsMessage = [];
             cardsWon = [];
+            cardsOpenedId = [];
             timeLeft = 30;
             resultDisplay.textContent = 0;
             createBoard();
