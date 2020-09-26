@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
   var active = JSON.parse(localStorage.getItem("activeList"));
   for (var i = 0; i < active.length; i++) {
     var index = active[i];
-    console.log(index);
     switch (index) {
       case "opt-0":
         cardArray.push(cardOptions[0]);
@@ -180,11 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
   var myTime = 30;
   var timeLeft = myTime;
   var level = 1;
+  var score = 0;
   var cardsChosen = [];
   var cardsChosenId = [];
   var cardsChosenImage = [];
   var cardsMessage = [];
   var cardsWon = [];
+  var isTicking = true;
+  var state = false;
 
   var mylevel = document.getElementById("level");
   mylevel.innerText = level;
@@ -199,8 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
     }
+    if (state) {
+      myTime -= 5;
+      timeLeft = myTime;
+      level += 1;
+      isTicking = true;
+    } else {
+      score = 0;
+      myTime = 30;
+      isTicking = true;
+    }
     mySound.play();
-    timer(myTime);
   }
 
   // Check for match
@@ -222,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
       messageText.textContent = message;
       var mySound = new sound('../audio/match.mp3');
       mySound.play();
+      score += 20;
     } else {
       cards[optionOneId].setAttribute("src", "../images/wonderful-indonesia.png");
       cards[optionTwoId].setAttribute("src", "../images/wonderful-indonesia.png");
@@ -231,15 +243,29 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsChosen = [];
     cardsChosenId = [];
     cardsChosenImage = [];
-    resultDisplay.textContent = cardsWon.length * 20;
+    resultDisplay.textContent = score;
     if (cardsWon.length === cardArray.length / 2) {
       messageText.textContent = "Congratulations! You've found them all!";
+      isTicking = false;
       var winDialog = document.getElementById("win");
       var next = document.getElementById("next-level");
+      var getUsername = localStorage.getItem("usernameInput")
+      var username = document.getElementById("username");
+      if (getUsername) {
+        username.innerText = username;
+      }
       winDialog.style.display = "block";
       next.addEventListener("click", function (e) {
+        var resetBoard = document.getElementById("board");
+        resetBoard.querySelectorAll('*').forEach(n => n.remove());
+        cardsChosen = [];
+        cardsChosenId = [];
+        cardsChosenImage = [];
+        cardsMessage = [];
+        cardsWon = [];
+        state = true;
+        createBoard();
         winDialog.style.display = "none";
-        document.location.href = "../option.html";
       })
     }
   }
@@ -265,6 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
     document.body.appendChild(this.sound);
+    this.sound.setAttribute("id", "my-sound");
+    document.getElementById("my-sound").loop = true;
     this.play = function () {
       this.sound.play();
     }
@@ -277,22 +305,39 @@ document.addEventListener("DOMContentLoaded", () => {
   var timeDisplay = document.getElementById("time-left");
   function timer(time) {
     setInterval(function () {
-      if (timeLeft <= 0) {
-        clearInterval(timeLeft = 0);
-      }
-      timeDisplay.innerText = timeLeft;
-      timeLeft -= 1;
-      if (timeLeft === 0 && cardsWon < cardArray.length / 2) {
-        clearInterval(timeLeft = 0);
-        var loseDialog = document.getElementById("lose");
-        var closebtn = document.getElementById("closeGame");
-        loseDialog.style.display = "block";
-        closebtn.onclick = function () {
-          loseDialog.style.display = "none";
+      if (isTicking) {
+        if (timeLeft === 0 && cardsWon.length < cardArray.length / 2) {
+          clearInterval(myTime = 0);
+          state = false;
+          var loseDialog = document.getElementById("lose");
+          var playAgain = document.getElementById("play-again");
+          loseDialog.style.display = "block";
+          playAgain.addEventListener("click", function (e) {
+            var resetBoard = document.getElementById("board");
+            resetBoard.querySelectorAll('*').forEach(n => n.remove());
+            cardsChosen = [];
+            cardsChosenId = [];
+            cardsChosenImage = [];
+            cardsMessage = [];
+            cardsWon = [];
+            timeLeft = 30;
+            resultDisplay.textContent = 0;
+            createBoard();
+            loseDialog.style.display = "none";
+          })
         }
+        if (timeLeft <= 0) {
+          clearInterval(timeLeft = 0);
+        }
+        timeDisplay.innerText = timeLeft;
+        timeLeft -= 1;
+      }
+      else {
+        clearInterval(timeLeft = myTime);
       }
     }, 1000)
   }
 
   createBoard();
+  timer(myTime);
 });
