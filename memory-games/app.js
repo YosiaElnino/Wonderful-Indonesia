@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector("#result");
   const messageText = document.querySelector("#message");
-  var myTime = 30;
+  var myTime = 50;
   var timeLeft = myTime;
   var level = 1;
   var score = 0;
@@ -187,32 +187,22 @@ document.addEventListener("DOMContentLoaded", () => {
   var cardsWon = [];
   var cardsOpenedId = [];
   var isTicking = true;
-  var state = false;
 
   var mylevel = document.getElementById("level");
-  mylevel.innerText = level;
 
   // create board
   var mySound = new sound('../audio/cublak-suweng.mp3');
   function createBoard() {
+    isTicking = true;
+    mylevel.innerText = level;
     for (let j = 0; j < cardArray.length; j++) {
+      // prepare card
       var card = document.createElement("img");
       card.setAttribute("src", "../images/wonderful-indonesia.png");
       card.setAttribute("data-id", j);
-      card.style.height = "200px";
-      card.style.width = "200px";
+      card.setAttribute("class", "card");
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
-    }
-    if (state) {
-      myTime -= 5;
-      timeLeft = myTime;
-      level += 1;
-      isTicking = true;
-    } else {
-      score = 0;
-      myTime = 30;
-      isTicking = true;
     }
     mySound.play();
   }
@@ -250,15 +240,10 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsChosenImage = [];
     resultDisplay.textContent = score;
     if (cardsWon.length === cardArray.length / 2) {
-      messageText.textContent = "Congratulations! You've found them all!";
+      messageText.textContent = "Find matches card and get point!";
       isTicking = false;
       var winDialog = document.getElementById("win");
       var next = document.getElementById("next-level");
-      var getUsername = localStorage.getItem("usernameInput")
-      var username = document.getElementById("username");
-      if (getUsername) {
-        username.innerText = username;
-      }
       winDialog.style.display = "block";
       next.addEventListener("click", function (e) {
         var resetBoard = document.getElementById("board");
@@ -269,7 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cardsMessage = [];
         cardsWon = [];
         cardsOpenedId = [];
-        state = true;
+        level = level + 1;
+        myTime -= 5;
+        timeLeft = myTime;
         createBoard();
         winDialog.style.display = "none";
       })
@@ -280,8 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function flipCard() {
     var cardId = this.getAttribute("data-id");
     var isOpened = cardsOpenedId.indexOf(cardId);
-    console.log(cardsOpenedId);
-    console.log(isOpened);
     if (isOpened === -1) {
       cardsChosen.push(cardArray[cardId].name);
       cardsChosenId.push(cardId);
@@ -293,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     else {
-      console.log("masuk kesini");
       alert("can't choose opened card");
     }
   }
@@ -323,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isTicking) {
         if (timeLeft === 0 && cardsWon.length < cardArray.length / 2) {
           clearInterval(myTime = 0);
-          state = false;
           var loseDialog = document.getElementById("lose");
           var playAgain = document.getElementById("play-again");
           loseDialog.style.display = "block";
@@ -336,8 +319,11 @@ document.addEventListener("DOMContentLoaded", () => {
             cardsMessage = [];
             cardsWon = [];
             cardsOpenedId = [];
-            timeLeft = 30;
-            resultDisplay.textContent = 0;
+            score = 0;
+            resultDisplay.textContent = score;
+            myTime = 50;
+            timeLeft = myTime;
+            level = 1;
             createBoard();
             loseDialog.style.display = "none";
           })
@@ -345,7 +331,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (timeLeft <= 0) {
           clearInterval(timeLeft = 0);
         }
-        timeDisplay.innerText = timeLeft;
+
+        if (timeLeft < 10) {
+          timeDisplay.innerText = "0" + timeLeft;
+        } else {
+          timeDisplay.innerText = timeLeft;
+        }
         timeLeft -= 1;
       }
       else {

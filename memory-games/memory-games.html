@@ -5,45 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Memory Game</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,500&display=swap"
+        rel="stylesheet">
     <title>Wonderful Indonesia</title>
     <script src="app.js" charset="utf-8"></script>
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="gameboard">
         <div class="box">
-            <div class="btn">
-                <a href="../index.html" class="back-btn">Quit</a>
-            </div>
-            <div class="header">
-                <div class="header-left">
-                    <h3 class="score">Score:<span id="result"></span></h3>
+            <div class="game-info">
+                <div class="centering">
+                    <div class="level-board">
+                        <h2 class="level">Level</h2>
+                        <h1 id="level">0</h1>
+                    </div>
                 </div>
-                <div class="header-center">
-                    <h3 class="time-left">Time left:<span id="time-left"></span></h3>
+                <div class="score-board">
+                    <div class="score">
+                        <p>Score:</p>
+                        <h2 id="result">0</h2>
+                    </div>
+                    <div class="time">
+                        <p>Time:</p>
+                        <h2 class="time-left">00:<span id="time-left">00</span></h2>
+                    </div>
                 </div>
-                <div class="header-right">
-                    <h3 class="level">Level:<span id="level"></span></h3>
+                <h3 id="message">Find matches card and get point!</h3>
+                <div class="centering">
+                    <a href="../index.html" class="back-btn">
+                        <div class="btn">
+                            QUIT
+                        </div>
+                    </a>
                 </div>
             </div>
 
-            <h3 class="message"><span id="message">Found matches card and get point!</span></h3>
-            <div class="grid" id="board">
+            <div class="outer-board">
+                <div class="grid" id="board">
+                </div>
             </div>
         </div>
     </div>
+    <p style="color: #ffffff; text-align: center;">Yosia Elnino &copy; 2020 - Eindhoven Fox</p>
 
     <div id="win" class="modal">
         <div class="modal-content">
             <h1>WIN</h1>
-            <p>Congratulations <span id="username">user</span>! you've found them all, click Next Level to go to the
+            <p>Congratulations! you've found them all, click Next Level to go to the
                 next level. Please aware that you will get more limited time</p>
             <div class="center">
                 <a href="../index.html">
-                    <div class="quitGame" id="quit">Quit</div>
+                    <div class="quitGame" id="quit">QUIT</div>
                 </a>
-                <div class="next" id="next-level">Next Level</div>
+                <div class="next" id="next-level">NEXT LEVEL</div>
             </div>
         </div>
     </div>
@@ -55,15 +70,11 @@
                 clicking the quit button</p>
             <div class="center">
                 <a href="../index.html">
-                    <div class="quitGame">Quit</div>
+                    <div class="quitGame">QUIT</div>
                 </a>
-                <div class="next" id="play-again">Play Again</div>
+                <div class="next" id="play-again">PLAY AGAIN</div>
             </div>
         </div>
-    </div>
-
-    <div class="credit">
-        <a href='https://www.freepik.com/vectors/tree'>Tree vector created by brgfx - www.freepik.com</a>
     </div>
 </body>
 

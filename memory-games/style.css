@@ -1,7 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
   background: url("../images/background.jpg");
@@ -11,67 +9,146 @@ body {
   list-style-type: none;
 }
 
-.wrapper {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+.gameboard {
+  margin: 80px auto;
+  display: flex;
+  justify-content: center;
 }
 
 .box {
-  background: rgb(173, 93, 41);
-  margin: 80px;
+  background: #AD5D29;
+  display: flex;
+  width: 900px;
+  padding: 52px 42px;
   border-radius: 15px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  justify-content: center;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.centering {
+  display: flex;
+  justify-content: center;
+}
+
+.level-board {
+  background-color: #843F22;
+  padding: 8px 38px;
+  border-radius: 10px;
+}
+
+.level {
+  color: #FFCB29;
+  font-size: 46px;
+  margin: 0;
+}
+
+#level {
+  color: #FFCB29;
+  font-size: 92px;
+  margin: 0;
+  text-align: center;
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  color: #FFCB29;
+  margin: 10px 30px;
+}
+
+.score p {
+  font-size: 19px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.score h2 {
+  font-size: 37px;
+  margin: 0;
+  text-align: center;
+}
+
+.time {
+  color: #FFCB29;
+  margin: 10px 30px;
+}
+
+.time p {
+  font-size: 19px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.time h2 {
+  font-size: 37px;
+  margin: 0;
+  text-align: center;
+}
+
+#message {
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 0;
 }
 
 .btn {
-  background: brown;
-  border: 1px solid brown;
-  padding: 10px;
-  float: right;
-  border-top-right-radius: 15px;
+  background-color: #DE000F;
+  width: 160px;
+  padding: 12px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  margin-top: 40px;
+  text-align: center;
+  color: #ffffff;
 }
 
-.btn .back-btn {
-  color: #cccccc;
+.game-info .centering a {
   text-decoration: none;
 }
 
-.btn .back-btn:hover {
-  opacity: 80%;
+.btn:hover {
+  transform: scale(1.1);
   cursor: pointer;
 }
 
+.outer-board {
+  width: 535px;
+  height: 535px;
+  display: flex;
+  margin-left: 32px;
+  background-color: #843F22;
+}
 
 .grid {
   display: flex;
   flex-wrap: wrap;
-  height: 600px;
-  width: 800px;
+  height: 512px;
+  width: 512px;
   margin: auto;
-  border: 5px solid brown;
 }
 
-.score {
-  text-align: center;
+.card {
+  height: 120px;
+  width: 120px;
+  padding: 4px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #0000004D;
 }
 
-.message {
-  text-align: center;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.header-left {
-  margin-right: 90px;
-}
-
-.header-right {
-  margin-left: 90px;
+.card:hover {
+  opacity: 60%;
+  cursor: pointer;
 }
 
 /* The Modal (background) */
@@ -125,15 +202,15 @@ body {
 }
 
 .next {
-  background-color:green;
-  color: #cccccc;
+  background-color:#A1BE02;
+  color: #ffffff;
   margin: 20px;
-  width: 100px;
+  width: 180px;
   display: inline-block;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 10px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  box-shadow: 0 3px 15px rgba(0,0,0,0.3);
 }
 
 .center {
@@ -148,15 +225,15 @@ body {
 }
 
 .quitGame {
-  background-color:#8B0000;
-  color: #cccccc;
+  background-color:#DE000F;
+  color: #ffffff;
   margin: 20px;
-  width: 100px;
+  width: 180px;
   display: inline-block;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 10px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  box-shadow: 0 3px 15px rgba(0,0,0,0.3);
 }
 
 .quitGame:hover {
